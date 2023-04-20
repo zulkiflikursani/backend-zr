@@ -10,7 +10,7 @@ const port = "3306";
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://192.168.43.31:3000/",
   })
 );
 app.use(bodyParser.json());
