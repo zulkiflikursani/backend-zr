@@ -14,6 +14,7 @@ const port = "3306";
 //   })
 // );
 app.use(bodyParser.json());
+app.use(cors());
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
