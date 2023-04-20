@@ -20,4 +20,4 @@ con.getConnection(function (err) {
   console.log("Connected!");
 });
 
-module.exports = con.promise();
+module.exports = con;
