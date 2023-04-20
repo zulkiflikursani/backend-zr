@@ -32,10 +32,10 @@ app.get("/penjualan", (req, res) => {
   }
 });
 
-// getprocuct
-app.get("/procucts", (req, res) => {
+// getproduct
+app.get("/products", (req, res) => {
   try {
-    con.query("select * from procuct", function (err, result) {
+    con.query("select * from product", function (err, result) {
       if (err) throw err;
       //   response(200, result, "data produk", res);
       res.status(200).json(result);
@@ -47,10 +47,10 @@ app.get("/procucts", (req, res) => {
 });
 
 // get prduk by id
-app.get("/procucts/:id", (req, res) => {
+app.get("/products/:id", (req, res) => {
   const id = req.params.id;
   try {
-    con.query(`select * from procuct where id=${id}`, function (err, result) {
+    con.query(`select * from product where id=${id}`, function (err, result) {
       if (err) throw err;
       res.status(200).json(result);
     });
@@ -60,9 +60,9 @@ app.get("/procucts/:id", (req, res) => {
 });
 
 // simpan poduk
-app.post("/procucts", (req, res) => {
+app.post("/products", (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
-  const sql = `INSERT INTO procuct VALUES('','${nama}','${kat}',${hbeli},${hjual},now())`;
+  const sql = `INSERT INTO PRODUCT VALUES('','${nama}','${kat}',${hbeli},${hjual},now())`;
 
   con.query(sql, function (err, result) {
     if (err) throw err;
@@ -70,19 +70,19 @@ app.post("/procucts", (req, res) => {
   });
 });
 // update produk
-app.patch("/procucts/:id", (req, res) => {
+app.patch("/products/:id", (req, res) => {
   const id = req.params.id;
   const { nama, kat, hjual, hbeli } = req.body;
-  const sql = `UPDATE procuct SET NAMA='${nama}',KAT='${kat}',HJUAL=${hjual},HBELI=${hbeli},CREATEAT=NOW() WHERE ID=${id}`;
+  const sql = `UPDATE PRODUCT SET NAMA='${nama}',KAT='${kat}',HJUAL=${hjual},HBELI=${hbeli},CREATEAT=NOW() WHERE ID=${id}`;
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.status(200).send(result);
   });
 });
 // delete produk
-app.delete("/procucts/:id", (req, res) => {
+app.delete("/products/:id", (req, res) => {
   const id = req.params.id;
-  const sql = `DELETE FROM procuct WHERE ID='${id}'`;
+  const sql = `DELETE FROM PRODUCT WHERE ID='${id}'`;
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.status(200).send(result);
@@ -91,7 +91,7 @@ app.delete("/procucts/:id", (req, res) => {
 
 app.get("/penjualan", (req, res) => {
   const id = req.params.id;
-  const sql = `SELECT * FROM penjualan`;
+  const sql = `SELECT * FROM PENJUALAN`;
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.status(200).send(result);
@@ -100,7 +100,7 @@ app.get("/penjualan", (req, res) => {
 
 app.get("/penjualan/:kode_penjualan", (req, res) => {
   const kode_penjualan = req.params.kode_penjualan;
-  const sql = `SELECT * FROM penjualan WHERE KODE_penjualan='${kode_penjualan}'`;
+  const sql = `SELECT * FROM PENJUALAN WHERE KODE_PENJUALAN='${kode_penjualan}'`;
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.status(200).send(result);
@@ -129,7 +129,7 @@ app.post("/penjualan", (req, res) => {
     temp += `('','${data.nama}',${data.hjual},'${data.id}','${kode_penjualan}',${data.qty},now()),`;
   });
   const sql =
-    `INSERT INTO penjualan (id,nama_barang,hjual,kode_barang,kode_penjualan,qty,createAt) VALUES` +
+    `INSERT INTO PENJUALAN (id,nama_barang,hjual,kode_barang,kode_penjualan,qty,createAt) VALUES` +
     temp.substring(0, temp.length - 1);
   // res.send(sql);
   con.query(sql, function (err, result) {
@@ -140,7 +140,7 @@ app.post("/penjualan", (req, res) => {
 
 app.delete("/penjualan/:kode_penjualan", (req, res) => {
   const kode_penjualan = req.params.kode_penjualan;
-  const sql = `DELETE FROM penjualan WHERE KODE_penjualan='${kode_penjualan}'`;
+  const sql = `DELETE FROM PENJUALAN WHERE KODE_PENJUALAN='${kode_penjualan}'`;
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.status(200).send(result);
@@ -156,8 +156,8 @@ app.get("/laporanpenjualan", (req, res) => {
   penjualan.kode_barang,
   penjualan.kode_penjualan,
   penjualan.qty,
-  procuct.hbeli,
-  penjualan.id from penjualan LEFT JOIN procuct on penjualan.kode_barang=procuct.id where  CAST(penjualan.createAt as date) BETWEEN '${mulai}' and '${sampai}'`;
+  product.hbeli,
+  penjualan.id from penjualan LEFT JOIN product on penjualan.kode_barang=product.id where  CAST(penjualan.createAt as date) BETWEEN '${mulai}' and '${sampai}'`;
   // res.send(sql);
   con.query(sql, function (err, result) {
     if (err) throw err;
