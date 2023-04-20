@@ -5,14 +5,14 @@ const response = require("./response");
 const cors = require("cors");
 
 const app = express();
-const hostname = "localhost";
-const port = "5000";
+const hostname = "bv4yes5gbuhpqn8gsc3z-mysql.services.clever-cloud.com";
+const port = "3306";
 
-app.use(
-  cors({
-    origin: "http://localhost:5000",
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:5000",
+//   })
+// );
 app.use(bodyParser.json());
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
