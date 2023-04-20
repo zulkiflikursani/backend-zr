@@ -15,6 +15,7 @@ const port = "3306";
 // );
 app.use(bodyParser.json());
 app.use(cors());
+app.set("Access-Control-Allow-Origin", "http://localhost:3000");
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
