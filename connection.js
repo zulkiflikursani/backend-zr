@@ -5,16 +5,19 @@ const password = "hVwRnAIbQDi0hsIoj7Wy";
 const database = "bv4yes5gbuhpqn8gsc3z";
 const port = "3306";
 
-var con = mysql.createConnection({
-  host: hostname,
-  user: user,
-  password: password,
-  database: database,
+var con = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DBNAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
-con.connect(function (err) {
+con.getConnection(function (err) {
   if (err) throw err;
   console.log("Connected!");
 });
 
-module.exports = con;
+module.exports = con.promise();
