@@ -8,14 +8,12 @@ const app = express();
 const hostname = "bv4yes5gbuhpqn8gsc3z-mysql.services.clever-cloud.com";
 const port = "3306";
 
-// app.use(
-//   cors({
-//     origin: "http://localhost:5000",
-//   })
-// );
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 app.use(bodyParser.json());
-app.use(cors());
-app.set("Access-Control-Allow-Origin", "http://localhost:3000");
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
