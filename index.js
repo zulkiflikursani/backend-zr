@@ -10,14 +10,8 @@ const port = "3306";
 
 app.use(
   cors({
-    origin: "http://192.168.43.31:3000",
-    origin: "https://frontend-zr.vercel.app",
-    Methods: GET,
-    HEAD,
-    PUT,
-    PATCH,
-    POST,
-    DELETE,
+    origin: ["http://192.168.43.31:3000", "https://frontend-zr.vercel.app"],
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   })
 );
 app.use(bodyParser.json());
