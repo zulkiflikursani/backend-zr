@@ -12,6 +12,7 @@ app.use(
   cors({
     origin: "http://192.168.43.31:3000",
     origin: "https://frontend-zr.vercel.app",
+    origin: "https://frontend-zr.vercel.app/",
   })
 );
 app.use(bodyParser.json());
