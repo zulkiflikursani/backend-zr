@@ -11,6 +11,10 @@ const port = "3306";
 app.use(
   cors({
     origin: ["http://192.168.43.31:3000", "https://frontend-zr.vercel.app"],
+  })
+);
+app.use(
+  cors({
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   })
 );
@@ -61,7 +65,7 @@ app.get("/products/:id", (req, res) => {
 });
 
 // simpan poduk
-app.post("/products", (req, res) => {
+app.post("/products", cors(), (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `INSERT INTO PRODUCT VALUES('','${nama}','${kat}',${hbeli},${hjual},now())`;
 
@@ -71,7 +75,7 @@ app.post("/products", (req, res) => {
   });
 });
 // update produk
-app.patch("/products/:id", (req, res) => {
+app.patch("/products/:id", cors(), (req, res) => {
   const id = req.params.id;
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `UPDATE PRODUCT SET NAMA='${nama}',KAT='${kat}',HJUAL=${hjual},HBELI=${hbeli},CREATEAT=NOW() WHERE ID=${id}`;
@@ -81,7 +85,7 @@ app.patch("/products/:id", (req, res) => {
   });
 });
 // delete produk
-app.delete("/products/:id", (req, res) => {
+app.delete("/products/:id", cors(), (req, res) => {
   const id = req.params.id;
   const sql = `DELETE FROM PRODUCT WHERE ID='${id}'`;
   con.query(sql, function (err, result) {
@@ -121,7 +125,7 @@ const makeid = (length) => {
   return result;
 };
 
-app.post("/penjualan", (req, res) => {
+app.post("/penjualan", cors(), (req, res) => {
   let kode_penjualan = makeid(5);
 
   const { data } = req.body;
@@ -139,7 +143,7 @@ app.post("/penjualan", (req, res) => {
   });
 });
 
-app.delete("/penjualan/:kode_penjualan", (req, res) => {
+app.delete("/penjualan/:kode_penjualan", cors(), (req, res) => {
   const kode_penjualan = req.params.kode_penjualan;
   const sql = `DELETE FROM PENJUALAN WHERE KODE_PENJUALAN='${kode_penjualan}'`;
   con.query(sql, function (err, result) {
