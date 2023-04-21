@@ -11,10 +11,6 @@ const port = "3306";
 app.use(
   cors({
     origin: ["http://192.168.43.31:3000", "https://frontend-zr.vercel.app"],
-  })
-);
-app.use(
-  cors({
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   })
 );
@@ -67,7 +63,7 @@ app.get("/products/:id", (req, res) => {
 // simpan poduk
 app.post("/products", cors(), (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
-  const sql = `INSERT INTO PRODUCT VALUES('','${nama}','${kat}',${hbeli},${hjual},now())`;
+  const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
 
   con.query(sql, function (err, result) {
     if (err) throw err;
@@ -78,7 +74,7 @@ app.post("/products", cors(), (req, res) => {
 app.patch("/products/:id", cors(), (req, res) => {
   const id = req.params.id;
   const { nama, kat, hjual, hbeli } = req.body;
-  const sql = `UPDATE PRODUCT SET NAMA='${nama}',KAT='${kat}',HJUAL=${hjual},HBELI=${hbeli},CREATEAT=NOW() WHERE ID=${id}`;
+  const sql = `UPDATE product SET nama='${nama}',kat='${kat}',hjual=${hjual},hbeli=${hbeli},createAt=NOW() WHERE id=${id}`;
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.status(200).send(result);
@@ -87,7 +83,7 @@ app.patch("/products/:id", cors(), (req, res) => {
 // delete produk
 app.delete("/products/:id", cors(), (req, res) => {
   const id = req.params.id;
-  const sql = `DELETE FROM PRODUCT WHERE ID='${id}'`;
+  const sql = `DELETE FROM product WHERE ID='${id}'`;
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.status(200).send(result);
@@ -96,7 +92,7 @@ app.delete("/products/:id", cors(), (req, res) => {
 
 app.get("/penjualan", (req, res) => {
   const id = req.params.id;
-  const sql = `SELECT * FROM PENJUALAN`;
+  const sql = `SELECT * FROM penjualan`;
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.status(200).send(result);
@@ -134,7 +130,7 @@ app.post("/penjualan", cors(), (req, res) => {
     temp += `('','${data.nama}',${data.hjual},'${data.id}','${kode_penjualan}',${data.qty},now()),`;
   });
   const sql =
-    `INSERT INTO PENJUALAN (id,nama_barang,hjual,kode_barang,kode_penjualan,qty,createAt) VALUES` +
+    `INSERT INTO penjualan (id,nama_barang,hjual,kode_barang,kode_penjualan,qty,createAt) VALUES` +
     temp.substring(0, temp.length - 1);
   // res.send(sql);
   con.query(sql, function (err, result) {
