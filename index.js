@@ -1,8 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const con = require("./connection");
-const response = require("./response");
-const cors = require("cors");
 
 const app = express();
 const hostname = "bv4yes5gbuhpqn8gsc3z-mysql.services.clever-cloud.com";
@@ -15,7 +13,6 @@ const port = "3306";
 //   })
 // );
 app.use(bodyParser.json());
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -35,14 +32,16 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
-app.use(express.static("public"));
+
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
 app.get("/", (req, res) => {
   res.send("ok");
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
+
 app.get("/penjualan", (req, res) => {
   try {
     con.query("select * from penjualan", function (err, result) {
@@ -55,17 +54,19 @@ app.get("/penjualan", (req, res) => {
 });
 
 // getproduct
-app.get("/products", (req, res) => {
-  try {
-    con.query("select * from product", function (err, result) {
-      if (err) throw err;
-      //   response(200, result, "data produk", res);
-      res.status(200).json(result);
-    });
-  } catch (error) {
-    // response(500, ");
-    res.status(500).json({ msg: error.message });
-  }
+app.get("/post-product", (req, res) => {
+  res.status(200).json({ msg: "post methode" });
+
+  // try {
+  //   con.query("select * from product", function (err, result) {
+  //     if (err) throw err;
+  //     //   response(200, result, "data produk", res);
+  //     res.status(200).json(result);
+  //   });
+  // } catch (error) {
+  //   // response(500, ");
+  //   res.status(500).json({ msg: error.message });
+  // }
 });
 
 // get prduk by id
@@ -82,7 +83,7 @@ app.get("/products/:id", (req, res) => {
 });
 
 // simpan poduk
-app.post("/products", urlencodedParser, (req, res) => {
+app.post("/products", (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
   console.log(sql);
