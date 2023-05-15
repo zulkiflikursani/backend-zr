@@ -15,6 +15,7 @@ const port = "3306";
 //   })
 // );
 app.use(bodyParser.json());
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -80,7 +81,7 @@ app.get("/products/:id", (req, res) => {
 });
 
 // simpan poduk
-app.post("products", (req, res) => {
+app.post("/products", urlencodedParser, (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
   try {
@@ -89,7 +90,7 @@ app.post("products", (req, res) => {
       res.status(200).send(result);
     });
   } catch (error) {
-    res.status(500).json({ msg: error.message });
+    res.status(500).json({ msg: error.message + "error kiboss" });
   }
 });
 // update produk
