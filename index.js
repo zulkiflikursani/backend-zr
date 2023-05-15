@@ -83,7 +83,7 @@ app.post("/products-post", (req, res) => {
   try {
     con.query(sql, function (err, result) {
       if (err) throw err;
-      res.status(200).send({ msg: result });
+      res.status(200).send({ msg: ok });
     });
   } catch (error) {
     res.status(500).json({ msg: error.message });
