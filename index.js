@@ -87,7 +87,7 @@ app.post("/products-post", (req, res) => {
       console.log(result);
     });
   } catch (error) {
-    res.status(500).send({ msg: error.message });
+    res.status(201).send({ msg: error.message });
   }
 });
 // update produk
