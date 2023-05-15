@@ -16,7 +16,10 @@ app.use(function (req, res, next) {
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
   );
   // Request headers you wish to allow
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, Content-Type, Authorization, Accept"
+  );
 
   // Set to true if you need the website to include cookies in the requests sent
   // to the API (e.g. in case you use sessions)
@@ -25,8 +28,8 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
