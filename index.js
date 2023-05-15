@@ -79,17 +79,14 @@ app.get("/products/:id", (req, res) => {
 app.post("/products-post", (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
-
-  res.status(200).json({ msg: sql });
-
-  // try {
-  //   con.query(sql, function (err, result) {
-  //     if (err) throw err;
-  //     res.status(200).send(result);
-  //   });
-  // } catch (error) {
-  //   res.status(500).json({ msg: error.message + "error kiboss" });
-  // }
+  try {
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      res.status(200).send(result);
+    });
+  } catch (error) {
+    res.status(500).json({ msg: error.message + "error kiboss" });
+  }
 });
 // update produk
 app.patch("/products/:id", cors(), (req, res) => {
