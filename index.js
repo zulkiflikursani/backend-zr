@@ -16,10 +16,23 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
   );
+  // Request headers you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader("Access-Control-Allow-Credentials", true);
+
+  // Pass to next layer of middleware
+  next();
 });
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
@@ -67,7 +80,7 @@ app.get("/products/:id", (req, res) => {
 });
 
 // simpan poduk
-app.post("/products", cors(), (req, res) => {
+app.post("/products", (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
 
