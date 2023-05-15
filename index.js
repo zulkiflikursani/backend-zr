@@ -16,7 +16,7 @@ app.use(function (req, res, next) {
   // Request headers you wish to allow
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, Content-Type, Authorization,Accept"
+    "Origin, Content-Type, Authorization, Accept"
   );
 
   // Set to true if you need the website to include cookies in the requests sent
@@ -83,7 +83,7 @@ app.post("/products-post", (req, res) => {
   try {
     con.query(sql, function (err, result) {
       if (err) throw err;
-      res.status(200).json({ msg: err });
+      res.status(200).json(result);
     });
   } catch (error) {
     res.status(500).send({ msg: error.message });
