@@ -79,7 +79,7 @@ app.get("/products/:id", (req, res) => {
 app.post("/products-post", (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
-  // res.status(200).send({ msg: sql });
+  res.status(200).send({ msg: sql });
   // try {
   //   con.query(sql, function (err, result) {
   //     if (err) throw err;
