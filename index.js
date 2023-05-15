@@ -76,11 +76,12 @@ app.get("/products/:id", (req, res) => {
 });
 
 // simpan poduk
-app.post("/products", (req, res) => {
+app.post("/products-post", (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
-  console.log(sql);
-  console.log(nama);
+
+  res.status(200).json({ msg: sql });
+
   // try {
   //   con.query(sql, function (err, result) {
   //     if (err) throw err;
