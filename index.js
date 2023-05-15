@@ -79,10 +79,9 @@ app.get("/products/:id", (req, res) => {
 app.post("/products-post", express.urlencoded, (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
-
   con.query(sql, function (err, result) {
     if (err) throw err;
-    res.status(200).send(result);
+    res.status(200).json(result);
     console.log(result);
   });
 });
