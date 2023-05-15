@@ -78,8 +78,8 @@ app.get("/products/:id", (req, res) => {
 // simpan poduk
 app.post("/products-post", express.urlencoded, (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
-  const sql = `insert into product values(null,'${nama}','${kat}',${hbeli},${hjual},now())`;
-  // res.status(200).json({ msg: sql });
+  const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
+
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.status(200).json(result);
