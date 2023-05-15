@@ -16,10 +16,7 @@ app.use(function (req, res, next) {
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
   );
   // Request headers you wish to allow
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
-  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
   // Set to true if you need the website to include cookies in the requests sent
   // to the API (e.g. in case you use sessions)
@@ -79,11 +76,11 @@ app.get("/products/:id", (req, res) => {
 app.post("/products-post", (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
-  res.status(200).send({ msg: sql });
+  // res.status(200).send({ msg: sql });
   try {
     con.query(sql, function (err, result) {
       if (err) throw err;
-      res.status(200).send({ msg: "ok" });
+      res.status(200).send({ msg: result });
     });
   } catch (error) {
     res.status(500).json({ msg: error.message });
