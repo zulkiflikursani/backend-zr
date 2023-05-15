@@ -79,16 +79,12 @@ app.get("/products/:id", (req, res) => {
 app.post("/products-post", (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `insert into product values(null,'${nama}','${kat}',${hbeli},${hjual},now())`;
-  res.status(200).json({ msg: sql });
-  // try {
-  //   con.query(sql, function (err, result) {
-  //     if (err) throw err;
-  //     res.status(200).json(result);
-  //     console.log(result);
-  //   });
-  // } catch (error) {
-  //   res.status(201).send({ msg: error.message });
-  // }
+  // res.status(200).json({ msg: sql });
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    res.status(200).json(result);
+    console.log(result);
+  });
 });
 // update produk
 app.patch("/products/:id", cors(), (req, res) => {
