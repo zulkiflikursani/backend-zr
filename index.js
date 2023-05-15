@@ -15,6 +15,12 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+app.use(function (req, res, next) {
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+});
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
