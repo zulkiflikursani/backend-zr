@@ -7,8 +7,6 @@ const app = express();
 const hostname = "bv4yes5gbuhpqn8gsc3z-mysql.services.clever-cloud.com";
 const port = "3306";
 
-app.use(bodyParser.json());
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
