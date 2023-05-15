@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const con = require("./connection");
-const cors = require("cors");
+// const cors = require("cors");
 
 const app = express();
 const hostname = "bv4yes5gbuhpqn8gsc3z-mysql.services.clever-cloud.com";
@@ -82,7 +82,7 @@ app.post("/products-post", express.urlencoded, (req, res) => {
 
   con.query(sql, function (err, result) {
     if (err) throw err;
-    res.status(200).json(result);
+    res.status(200).send(result);
     console.log(result);
   });
 });
