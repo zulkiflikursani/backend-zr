@@ -35,6 +35,7 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
+app.use(express.static("public"));
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
@@ -84,14 +85,16 @@ app.get("/products/:id", (req, res) => {
 app.post("/products", urlencodedParser, (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
-  try {
-    con.query(sql, function (err, result) {
-      if (err) throw err;
-      res.status(200).send(result);
-    });
-  } catch (error) {
-    res.status(500).json({ msg: error.message + "error kiboss" });
-  }
+  console.log(sql);
+  console.log(nama);
+  // try {
+  //   con.query(sql, function (err, result) {
+  //     if (err) throw err;
+  //     res.status(200).send(result);
+  //   });
+  // } catch (error) {
+  //   res.status(500).json({ msg: error.message + "error kiboss" });
+  // }
 });
 // update produk
 app.patch("/products/:id", cors(), (req, res) => {
