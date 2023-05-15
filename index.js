@@ -76,7 +76,7 @@ app.get("/products/:id", (req, res) => {
 });
 
 // simpan poduk
-app.post("/products-post", (req, res) => {
+app.post("/products-post", express.urlencoded, (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `insert into product values(null,'${nama}','${kat}',${hbeli},${hjual},now())`;
   // res.status(200).json({ msg: sql });
@@ -87,7 +87,7 @@ app.post("/products-post", (req, res) => {
   });
 });
 // update produk
-app.patch("/products/:id", cors(), (req, res) => {
+app.patch("/products/:id", (req, res) => {
   const id = req.params.id;
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `UPDATE product SET nama='${nama}',kat='${kat}',hjual=${hjual},hbeli=${hbeli},createAt=NOW() WHERE id=${id}`;
