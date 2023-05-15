@@ -43,7 +43,7 @@ app.get("/penjualan", (req, res) => {
   try {
     con.query("select * from penjualan", function (err, result) {
       if (err) throw err;
-      res.status(200).json(err);
+      res.status(200).json({ msg: "jalan" });
     });
   } catch (error) {
     res.status(500).json({ msg: error.message });
