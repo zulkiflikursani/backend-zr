@@ -7,6 +7,8 @@ const app = express();
 const hostname = "bv4yes5gbuhpqn8gsc3z-mysql.services.clever-cloud.com";
 const port = "3306";
 
+app.use(bodyParser.json());
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -16,7 +18,7 @@ app.use(function (req, res, next) {
   // Request headers you wish to allow
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, Content-Type, Authorization, Accept"
+    "Origin, Content-Type, Authorization,Accept"
   );
 
   // Set to true if you need the website to include cookies in the requests sent
@@ -39,10 +41,10 @@ app.get("/", (req, res) => {
 });
 app.get("/penjualan", (req, res) => {
   try {
-    res.status(200).json({ msg: "jalan" });
-    // con.query("select * from penjualan", function (err, result) {
-    // if (err) throw err;
-    // });
+    con.query("select * from penjualan", function (err, result) {
+      if (err) throw err;
+      res.status(200).json(result);
+    });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -83,7 +85,7 @@ app.post("/products-post", (req, res) => {
   try {
     con.query(sql, function (err, result) {
       if (err) throw err;
-      res.status(200).json(result);
+      res.status(200).json(err);
     });
   } catch (error) {
     res.status(500).send({ msg: error.message });
