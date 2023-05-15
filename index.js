@@ -8,12 +8,12 @@ const app = express();
 const hostname = "bv4yes5gbuhpqn8gsc3z-mysql.services.clever-cloud.com";
 const port = "3306";
 
-app.use(
-  cors({
-    origin: ["http://192.168.43.31:3000", "https://frontend-zr.vercel.app"],
-    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["http://192.168.43.31:3000", "https://frontend-zr.vercel.app"],
+//     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+//   })
+// );
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
