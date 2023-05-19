@@ -11,7 +11,7 @@ const port = "3306";
 // const port = "5000";
 var corsOptions = {
   credentials: true,
-  origin: "http://localhost:3000",
+  origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 };
 
@@ -42,8 +42,6 @@ app.get("/products", cors(corsOptions), (req, res) => {
   try {
     con.query("select * from product", function (err, result) {
       if (err) throw err;
-      // res.json({ msg: "This is CORS-enabled for only example.com." });
-      // response(200, result, "data produk", res);
       res.status(200).json(result);
       console.log(result);
     });
