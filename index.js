@@ -11,8 +11,6 @@ const port = "3306";
 // const port = "5000";
 var corsOptions = {
   credentials: true,
-  origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 };
 
 app.use(bodyParser.json());
