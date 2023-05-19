@@ -37,7 +37,7 @@ app.get("/penjualan", (req, res) => {
 });
 
 // getproduct
-app.get("/products", (req, res) => {
+app.get("/products", cors(corsOptions), (req, res) => {
   try {
     con.query("select * from product", function (err, result) {
       if (err) throw err;
