@@ -10,7 +10,8 @@ const port = "3306";
 // const hostname = "localhost";
 // const port = "5000";
 var corsOptions = {
-  origin: "*",
+  origin: "https://localhost:3000",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
