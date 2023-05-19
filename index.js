@@ -12,6 +12,7 @@ const port = "3306";
 var corsOptions = {
   origin: "https://localhost:3000",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
