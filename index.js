@@ -1,5 +1,5 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const con = require("./connection");
 const cors = require("cors");
 
@@ -10,14 +10,14 @@ const port = "3306";
 // const hostname = "localhost";
 // const port = "5000";
 var corsOptions = {
+  credentials: true,
   origin: "http://localhost:3000",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
