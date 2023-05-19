@@ -50,16 +50,16 @@ app.get("/penjualan", (req, res) => {
 
 // getproduct
 app.get("/products", (req, res) => {
-  try {
-    con.query("select * from product", function (err, result) {
-      if (err) throw err;
-      //   response(200, result, "data produk", res);
-      res.status(200).json(result);
-    });
-  } catch (error) {
-    // response(500, ");
-    res.status(500).json({ msg: error.message });
-  }
+  // try {
+  con.query("select * from product", function (err, result) {
+    // if (err) throw err;
+    //   response(200, result, "data produk", res);
+    res.status(200).json(result);
+  });
+  // } catch (error) {
+  //   // response(500, ");
+  //   res.status(500).json({ msg: error.message });
+  // }
 });
 
 // get prduk by id
