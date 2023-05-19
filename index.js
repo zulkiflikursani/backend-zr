@@ -11,7 +11,7 @@ const port = "3306";
 // const port = "5000";
 var corsOptions = {
   credentials: true,
-  origin: "http://localhost:3000",
+  origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 };
 
@@ -53,7 +53,7 @@ app.get("/products", cors(corsOptions), (req, res) => {
 });
 
 // get prduk by id
-app.get("/products/:id", (req, res) => {
+app.get("/products/:id", cors(corsOptions), (req, res) => {
   const id = req.params.id;
   try {
     con.query(`select * from product where id=${id}`, function (err, result) {
