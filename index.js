@@ -9,25 +9,11 @@ const port = "3306";
 
 // const hostname = "localhost";
 // const port = "5000";
-app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  // Request headers you wish to allow
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, Content-Type, Authorization, Accept"
-  );
+var corsOptions = {
+  origin: "http://example.com",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader("Access-Control-Allow-Credentials", true);
-
-  // Pass to next layer of middleware
-  next();
-});
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -51,7 +37,7 @@ app.get("/penjualan", (req, res) => {
 });
 
 // getproduct
-app.get("/products", (req, res) => {
+app.get("/products", cors(corsOptions), (req, res) => {
   try {
     con.query("select * from product", function (err, result) {
       if (err) throw err;
