@@ -41,6 +41,7 @@ app.get("/products", cors(corsOptions), (req, res) => {
   try {
     con.query("select * from product", function (err, result) {
       if (err) throw err;
+      res.json({ msg: "This is CORS-enabled for only example.com." });
       // response(200, result, "data produk", res);
       res.status(200).json(result);
     });
