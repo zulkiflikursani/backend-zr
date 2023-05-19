@@ -65,7 +65,7 @@ app.get("/products/:id", (req, res) => {
 });
 
 // simpan poduk
-app.post("/products-post", (req, res) => {
+app.post("/products-post", cors(corsOptions), (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
   try {
