@@ -10,7 +10,7 @@ const port = "3306";
 // const hostname = "localhost";
 // const port = "5000";
 var corsOptions = {
-  origin: "https://localhost:3000",
+  origin: "http://localhost:3000",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -46,6 +46,7 @@ app.get("/products", cors(corsOptions), (req, res) => {
       // res.json({ msg: "This is CORS-enabled for only example.com." });
       // response(200, result, "data produk", res);
       res.status(200).json(result);
+      console.log(result);
     });
   } catch (error) {
     // response(500, ");
