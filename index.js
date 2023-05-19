@@ -11,11 +11,12 @@ const port = "3306";
 // const port = "5000";
 var corsOptions = {
   credentials: true,
-  origin: "*",
+  origin: "http://localhost:3000",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 };
 
 app.use(bodyParser.json());
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(port, hostname, () => {
