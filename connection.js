@@ -5,11 +5,27 @@ const password = "hVwRnAIbQDi0hsIoj7Wy";
 const database = "bv4yes5gbuhpqn8gsc3z";
 const port = "3306";
 
+// const hostname = "localhost";
+// const user = "root";
+// const password = "";
+// const database = "zr-cell-react";
+// const port = "3306";
+
+// var con = mysql.createPool({
+//   host: process.env.DB_HOST,
+//   user: process.env.DB_USERNAME,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_DBNAME,
+//   waitForConnections: true,
+//   connectionLimit: 10,
+//   queueLimit: 0,
+// });
+
 var con = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DBNAME,
+  host: hostname,
+  user: user,
+  password: password,
+  database: database,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
