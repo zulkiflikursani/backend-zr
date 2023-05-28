@@ -67,15 +67,17 @@ app.get("/products/:id", cors(corsOptions), (req, res) => {
 app.post("/products-post", cors(corsOptions), (req, res) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
-  try {
-    con.query(sql, function (err, result) {
-      if (err) throw err;
-      res.status(200).json({ data: result });
-      console.log(result);
-    });
-  } catch (error) {
-    res.status(200).json({ data: error });
-  }
+  res.status(200).json({ data: sql });
+
+  // try {
+  //   con.query(sql, function (err, result) {
+  //     if (err) throw err;
+  //     res.status(200).json({ data: result });
+  //     console.log(result);
+  //   });
+  // } catch (error) {
+  //   res.status(200).json({ data: error });
+  // }
 });
 // update produk
 app.patch("/products/:id", (req, res) => {
