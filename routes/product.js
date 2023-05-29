@@ -50,10 +50,11 @@ router.patch("/:id", (req, res) => {
   const id = req.params.id;
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `UPDATE product SET nama='${nama}',kat='${kat}',hjual=${hjual},hbeli=${hbeli},createAt=NOW() WHERE id=${id}`;
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    res.status(200).send(result);
-  });
+  // con.query(sql, function (err, result) {
+  //   if (err) throw err;
+  // res.status(200).send(result);
+  res.status(200).send(sql);
+  // });
 });
 // delete produk
 router.delete("/:id", (req, res) => {
@@ -61,7 +62,6 @@ router.delete("/:id", (req, res) => {
   const sql = `DELETE FROM product WHERE ID='${id}'`;
   con.query(sql, function (err, result) {
     if (err) throw err;
-    // s
     res.status(200).send(result);
     // con.release();
   });
