@@ -29,7 +29,10 @@ app.use((req, res, next) => {
   }
   next();
 });
+
 app.use("/products", productRoutes);
+app.use("/peenjunjualan", penjualanRoutes);
+app.use("/palan", laporanpenjualanRoutes);
 
 app.use((req, res, next) => {
   const error = new Error("not found");
@@ -43,8 +46,5 @@ app.use((error, req, res, next) => {
     message: error.message,
   });
 });
-
-// app.use("/peenjunjualan", penjualanRoutes);
-// app.use("/palan", laporanpenjualanRoutes);
 
 module.exports = app;
