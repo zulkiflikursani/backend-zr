@@ -56,7 +56,7 @@ router.patch("/:id", (req, res) => {
   });
 });
 // delete produk
-router.delete("/products/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
   const id = req.params.id;
   const sql = `DELETE FROM product WHERE ID='${id}'`;
   con.query(sql, function (err, result) {
