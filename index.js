@@ -3,6 +3,9 @@ const bodyParser = require("body-parser");
 const con = require("./connection");
 const cors = require("cors");
 
+const productRoutes = require("./routes/product");
+const penjualanRoutes = require("./routes/penjualan");
+
 const app = express();
 const hostname = "bv4yes5gbuhpqn8gsc3z-mysql.services.clever-cloud.com";
 const port = "3306";
@@ -14,147 +17,18 @@ var corsOptions = {
 };
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
+app.use("/products", productRoutes);
+app.use("/penjualan", penjualanRoutes);
 
 app.get("/", (req, res) => {
   res.send("ok");
   console.log(`Server running at http://${hostname}:${port}/`);
-});
-app.get("/penjualan", (req, res) => {
-  try {
-    con.query("select * from penjualan", function (err, result) {
-      if (err) throw err;
-      res.status(200).json(result);
-    });
-  } catch (error) {
-    res.status(500).json({ msg: error.message });
-  }
-});
-
-// getproduct
-app.get("/products", cors(corsOptions), (req, res) => {
-  try {
-    con.query("select * from product", function (err, result) {
-      if (err) throw err;
-      res.status(200).json(result);
-      console.log(result);
-    });
-  } catch (error) {
-    // response(500, ");
-    res.status(500).json({ msg: error.message });
-  }
-});
-
-// get prduk by id
-app.get("/products/:id", cors(corsOptions), (req, res) => {
-  const id = req.params.id;
-  try {
-    con.query(`select * from product where id=${id}`, function (err, result) {
-      if (err) throw err;
-      res.status(200).json(result);
-    });
-  } catch (error) {
-    res.status(500).json({ msg: error.message });
-  }
-});
-
-// simpan poduk
-app.post("/products-post", cors(corsOptions), (req, res) => {
-  const { nama, kat, hjual, hbeli } = req.body;
-  const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
-  res.status(200).json({ data: sql });
-
-  // try {
-  //   con.query(sql, function (err, result) {
-  //     if (err) throw err;
-  //     res.status(200).json({ data: result });
-  //     console.log(result);
-  //   });
-  // } catch (error) {
-  //   res.status(200).json({ data: error });
-  // }
-});
-// update produk
-app.patch("/products/:id", (req, res) => {
-  const id = req.params.id;
-  const { nama, kat, hjual, hbeli } = req.body;
-  const sql = `UPDATE product SET nama='${nama}',kat='${kat}',hjual=${hjual},hbeli=${hbeli},createAt=NOW() WHERE id=${id}`;
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    res.status(200).send(result);
-  });
-});
-// delete produk
-app.delete("/products/:id", cors(), (req, res) => {
-  const id = req.params.id;
-  const sql = `DELETE FROM product WHERE ID='${id}'`;
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    res.status(200).send(result);
-  });
-});
-
-app.get("/penjualan", (req, res) => {
-  const id = req.params.id;
-  const sql = `SELECT * FROM penjualan`;
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    res.status(200).send(result);
-  });
-});
-
-app.get("/penjualan/:kode_penjualan", (req, res) => {
-  const kode_penjualan = req.params.kode_penjualan;
-  const sql = `SELECT * FROM PENJUALAN WHERE KODE_PENJUALAN='${kode_penjualan}'`;
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    res.status(200).send(result);
-  });
-});
-
-const makeid = (length) => {
-  let result = "";
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const charactersLength = characters.length;
-  let counter = 0;
-  while (counter < length) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    counter += 1;
-  }
-  return result;
-};
-
-app.post("/penjualan", cors(), (req, res) => {
-  let kode_penjualan = makeid(5);
-
-  const { data } = req.body;
-  var temp = "";
-  data.map((data) => {
-    temp += `('','${data.nama}',${data.hjual},'${data.id}','${kode_penjualan}',${data.qty},now()),`;
-  });
-  const sql =
-    `INSERT INTO penjualan (id,nama_barang,hjual,kode_barang,kode_penjualan,qty,createAt) VALUES` +
-    temp.substring(0, temp.length - 1);
-  // res.send(sql);
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    res.status(201).send(result);
-  });
-});
-
-app.delete("/penjualan/:kode_penjualan", cors(), (req, res) => {
-  const kode_penjualan = req.params.kode_penjualan;
-  const sql = `DELETE FROM PENJUALAN WHERE KODE_PENJUALAN='${kode_penjualan}'`;
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    res.status(200).send(result);
-  });
 });
 
 app.get("/laporanpenjualan", (req, res) => {
