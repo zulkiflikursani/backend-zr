@@ -46,14 +46,15 @@ router.post("/", (req, res, next) => {
   }
 });
 // update produk
-router.patch("/:id", (req, res) => {
+router.patch("/:id", (req, res, next) => {
   const id = req.params.id;
   const { nama, kat, hjual, hbeli } = req.body;
-  const sql = `UPDATE product SET nama='${nama}',kat='${kat}',hjual=${hjual},hbeli=${hbeli},createAt=NOW() WHERE id=${id}`;
+  res.status(200).json({ message: "patch method" });
+  // const sql = `UPDATE product SET nama='${nama}',kat='${kat}',hjual=${hjual},hbeli=${hbeli},createAt=NOW() WHERE id=${id}`;
   // con.query(sql, function (err, result) {
   //   if (err) throw err;
-  // res.status(200).send(result);
-  res.status(200).send(sql);
+  //   res.status(200).send(result);
+  //   // res.status(200).send(sql);
   // });
 });
 // delete produk
