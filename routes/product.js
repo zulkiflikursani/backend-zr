@@ -31,10 +31,12 @@ router.get("/:id", (req, res, next) => {
 // // simpan poduk
 router.post("/", (req, res, next) => {
   const { nama, kat, hjual, hbeli } = req.body;
-  const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
+  const sql = `insert into product (nama,kat,hbeli,hjual,createAt) values('${nama}','${kat}',${hbeli},${hjual},now())`;
+
   // res.status(200).json({ data: sql });
   try {
     con.query(sql, function (err, result) {
+      // con.release();
       if (err) throw err;
       res.status(200).json({ data: result });
       console.log(result);
@@ -61,6 +63,7 @@ router.delete("/products/:id", (req, res) => {
     if (err) throw err;
     // s
     res.status(200).send(result);
+    // con.release();
   });
 });
 
