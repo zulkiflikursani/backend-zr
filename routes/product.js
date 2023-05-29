@@ -59,6 +59,7 @@ router.delete("/products/:id", (req, res) => {
   const sql = `DELETE FROM product WHERE ID='${id}'`;
   con.query(sql, function (err, result) {
     if (err) throw err;
+    // s
     res.status(200).send(result);
   });
 });
