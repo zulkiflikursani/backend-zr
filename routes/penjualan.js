@@ -46,7 +46,7 @@ const makeid = (length) => {
   return result;
 };
 
-router.post("/penjualan", cors(), (req, res) => {
+router.post("/penjualan", (req, res) => {
   let kode_penjualan = makeid(5);
 
   const { data } = req.body;
@@ -64,7 +64,7 @@ router.post("/penjualan", cors(), (req, res) => {
   });
 });
 
-router.delete("/penjualan/:kode_penjualan", cors(), (req, res) => {
+router.delete("/penjualan/:kode_penjualan", (req, res) => {
   const kode_penjualan = req.params.kode_penjualan;
   const sql = `DELETE FROM PENJUALAN WHERE KODE_PENJUALAN='${kode_penjualan}'`;
   con.query(sql, function (err, result) {
@@ -72,3 +72,5 @@ router.delete("/penjualan/:kode_penjualan", cors(), (req, res) => {
     res.status(200).send(result);
   });
 });
+
+module.exports = router;

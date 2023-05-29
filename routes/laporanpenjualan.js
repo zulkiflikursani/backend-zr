@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const con = require("../connection");
 
-router.get("/laporanpenjualan", (req, res) => {
+router.get("/", (req, res) => {
   const mulai = req.query.mulai;
   const sampai = req.query.sampai;
   const sql = `select penjualan.nama_barang,
@@ -19,3 +19,5 @@ router.get("/laporanpenjualan", (req, res) => {
     res.status(200).send(result);
   });
 });
+
+module.exports = router;

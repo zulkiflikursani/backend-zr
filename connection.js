@@ -1,15 +1,15 @@
 var mysql = require("mysql");
-const hostname = "bv4yes5gbuhpqn8gsc3z-mysql.services.clever-cloud.com";
-const user = "uvwvc1uf3p3geszx";
-const password = "hVwRnAIbQDi0hsIoj7Wy";
-const database = "bv4yes5gbuhpqn8gsc3z";
-const port = "3306";
-
-// const hostname = "localhost";
-// const user = "root";
-// const password = "";
-// const database = "zr-cell-react";
+// const hostname = "bv4yes5gbuhpqn8gsc3z-mysql.services.clever-cloud.com";
+// const user = "uvwvc1uf3p3geszx";
+// const password = "hVwRnAIbQDi0hsIoj7Wy";
+// const database = "bv4yes5gbuhpqn8gsc3z";
 // const port = "3306";
+
+const hostname = "localhost";
+const user = "root";
+const password = "";
+const database = "zr-cell-react";
+const port = "3306";
 
 // var con = mysql.createPool({
 //   host: process.env.DB_HOST,

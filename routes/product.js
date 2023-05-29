@@ -28,24 +28,23 @@ router.get("/:id", (req, res, next) => {
   }
 });
 
-// simpan poduk
+// // simpan poduk
 router.post("/", (req, res, next) => {
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `insert into product values('','${nama}','${kat}',${hbeli},${hjual},now())`;
-  res.status(200).json({ data: sql });
-
-  // try {
-  //   con.query(sql, function (err, result) {
-  //     if (err) throw err;
-  //     res.status(200).json({ data: result });
-  //     console.log(result);
-  //   });
-  // } catch (error) {
-  //   res.status(200).json({ data: error });
-  // }
+  // res.status(200).json({ data: sql });
+  try {
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      res.status(200).json({ data: result });
+      console.log(result);
+    });
+  } catch (error) {
+    res.status(200).json({ data: error });
+  }
 });
 // update produk
-router.patch("/products/:id", (req, res) => {
+router.patch("/:id", (req, res) => {
   const id = req.params.id;
   const { nama, kat, hjual, hbeli } = req.body;
   const sql = `UPDATE product SET nama='${nama}',kat='${kat}',hjual=${hjual},hbeli=${hbeli},createAt=NOW() WHERE id=${id}`;
@@ -55,7 +54,7 @@ router.patch("/products/:id", (req, res) => {
   });
 });
 // delete produk
-router.delete("/products/:id", cors(), (req, res) => {
+router.delete("/products/:id", (req, res) => {
   const id = req.params.id;
   const sql = `DELETE FROM product WHERE ID='${id}'`;
   con.query(sql, function (err, result) {
@@ -63,3 +62,5 @@ router.delete("/products/:id", cors(), (req, res) => {
     res.status(200).send(result);
   });
 });
+
+module.exports = router;
