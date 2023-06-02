@@ -46,12 +46,12 @@ router.post("/", (req, res) => {
   const { data } = req.body;
   var temp = "";
   data.map((data) => {
-    temp += `('','${data.nama}',${data.hjual},'${data.id}','${kode_penjualan}',${data.qty},now()),`;
+    temp += `('${data.nama}',${data.hjual},'${data.id}','${kode_penjualan}',${data.qty},now()),`;
   });
   const sql =
-    `INSERT INTO penjualan (id,nama_barang,hjual,kode_barang,kode_penjualan,qty,createAt) VALUES` +
+    `INSERT INTO penjualan (nama_barang,hjual,kode_barang,kode_penjualan,qty,createAt) VALUES` +
     temp.substring(0, temp.length - 1);
-
+  // res.status(200).json(sql);
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.status(200).json(result);
