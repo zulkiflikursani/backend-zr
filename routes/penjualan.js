@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const con = require("../connection");
 
-router.get("/penjualan", (req, res) => {
+router.get("/", (req, res) => {
   try {
     con.query("select * from penjualan", function (err, result) {
       if (err) throw err;
@@ -15,7 +15,7 @@ router.get("/penjualan", (req, res) => {
 
 // getproduct
 
-router.get("/penjualan", (req, res) => {
+router.get("/", (req, res) => {
   const id = req.params.id;
   const sql = `SELECT * FROM penjualan`;
   con.query(sql, function (err, result) {
@@ -24,7 +24,7 @@ router.get("/penjualan", (req, res) => {
   });
 });
 
-router.get("/penjualan/:kode_penjualan", (req, res) => {
+router.get("/:kode_penjualan", (req, res) => {
   const kode_penjualan = req.params.kode_penjualan;
   const sql = `SELECT * FROM PENJUALAN WHERE KODE_PENJUALAN='${kode_penjualan}'`;
   con.query(sql, function (err, result) {
@@ -46,7 +46,7 @@ const makeid = (length) => {
   return result;
 };
 
-router.post("/penjualan", (req, res) => {
+router.post("/", (req, res) => {
   let kode_penjualan = makeid(5);
 
   const { data } = req.body;
@@ -64,7 +64,7 @@ router.post("/penjualan", (req, res) => {
   });
 });
 
-router.delete("/penjualan/:kode_penjualan", (req, res) => {
+router.delete("/:kode_penjualan", (req, res) => {
   const kode_penjualan = req.params.kode_penjualan;
   const sql = `DELETE FROM PENJUALAN WHERE KODE_PENJUALAN='${kode_penjualan}'`;
   con.query(sql, function (err, result) {
