@@ -4,25 +4,19 @@ const con = require("../connection");
 
 router.get("/", (req, res) => {
   try {
-    con.query("select * from penjualan", function (err, result) {
-      if (err) throw err;
-      res.status(200).json(result);
-    });
+    con.query(
+      "select id,nama_barang,hjual,crateAt as tangal,kode_barang,kode_penjualan,qty from penjualan",
+      function (err, result) {
+        if (err) throw err;
+        res.status(200).json(result);
+      }
+    );
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
 });
 
 // getproduct
-
-router.get("/", (req, res) => {
-  const id = req.params.id;
-  const sql = `SELECT * FROM penjualan`;
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    res.status(200).send(result);
-  });
-});
 
 router.get("/:kode_penjualan", (req, res) => {
   const kode_penjualan = req.params.kode_penjualan;
