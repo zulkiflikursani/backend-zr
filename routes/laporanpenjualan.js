@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
   // res.send(sql);
   con.query(sql, function (err, result) {
     if (err) throw err;
-    res.status(200).send(result);
+    res.status(200).json(result);
   });
 });
 
