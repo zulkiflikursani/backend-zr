@@ -5,7 +5,7 @@ const con = require("../connection");
 router.get("/", (req, res) => {
   try {
     con.query(
-      "select id,nama_barang,hjual,crateAt as tangal,kode_barang,kode_penjualan,qty from penjualan",
+      "select id,nama_barang,hjual,createAt as tanggal,kode_barang,kode_penjualan,qty from penjualan",
       function (err, result) {
         if (err) throw err;
         res.status(200).json(result);
