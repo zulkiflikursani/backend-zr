@@ -51,10 +51,10 @@ router.post("/", (req, res) => {
   const sql =
     `INSERT INTO penjualan (id,nama_barang,hjual,kode_barang,kode_penjualan,qty,createAt) VALUES` +
     temp.substring(0, temp.length - 1);
-  // res.send(sql);
+
   con.query(sql, function (err, result) {
     if (err) throw err;
-    res.status(201).send(result);
+    res.status(200).json(result);
   });
 });
 
