@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
 
 router.get("/:kode_penjualan", (req, res) => {
   const kode_penjualan = req.params.kode_penjualan;
-  const sql = `SELECT * FROM PENJUALAN WHERE KODE_PENJUALAN='${kode_penjualan}'`;
+  const sql = `SELECT * FROM penjualan WHERE kode_penjualan='${kode_penjualan}'`;
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.status(200).send(result);
