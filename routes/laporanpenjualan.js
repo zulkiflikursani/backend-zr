@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
   const sampai = req.query.sampai;
   const sql = `select penjualan.nama_barang,
     penjualan.hjual,
-    FORMAT (penjualan.createAt, 'dd-MM-yy') as 'dd-mm-yyyy',
+    FORMAT (penjualan.createAt, 'dd-MM-yy') as 'tanggal',
     penjualan.kode_barang,
     penjualan.kode_penjualan,
     penjualan.qty,
