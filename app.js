@@ -3,6 +3,8 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const productRoutes = require("./routes/product");
 const penjualanRoutes = require("./routes/penjualan");
+const pembelianRoutes = require("./routes/Pembelian");
+
 // const pembelianRoutes = require("./routes/pembelian");
 const laporanpenjualanRoutes = require("./routes/laporanpenjualan");
 
@@ -33,7 +35,7 @@ app.use((req, res, next) => {
 
 app.use("/products", productRoutes);
 app.use("/penjualan", penjualanRoutes);
-// app.use("/pembelian", pembelianRoutes);
+app.use("/pembelian", pembelianRoutes);
 app.use("/laporanpenjualan", laporanpenjualanRoutes);
 
 app.use((req, res, next) => {
