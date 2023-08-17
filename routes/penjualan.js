@@ -41,7 +41,7 @@ const makeid = (length) => {
 };
 
 router.post("/", (req, res) => {
-  let kode_penjualan = makeid(5);
+  let kode_penjualan = "J-" + makeid(5);
 
   const { data } = req.body;
   var temp = "";

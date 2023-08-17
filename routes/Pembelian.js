@@ -41,7 +41,7 @@ const makeid = (length) => {
 };
 
 router.post("/", (req, res) => {
-  let kode_pembelian = makeid(5);
+  let kode_pembelian = "B-" + makeid(5);
 
   const { data } = req.body;
   var temp = "";
@@ -49,7 +49,7 @@ router.post("/", (req, res) => {
     temp += `('${data.nama}',${data.hbeli},'${data.id}','${kode_pembelian}',${data.qty},now()),`;
   });
   const sql =
-    `INSERT INTO pembelian (nama_barang,beli,kode_barang,kode_penjualan,qty,createAt) VALUES` +
+    `INSERT INTO pembelian (nama_barang,hbeli,kode_barang,kode_pembelian,qty,createAt) VALUES` +
     temp.substring(0, temp.length - 1);
   // res.status(200).json(sql);
   con.query(sql, function (err, result) {
