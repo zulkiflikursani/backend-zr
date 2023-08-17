@@ -3,7 +3,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const productRoutes = require("./routes/product");
 const penjualanRoutes = require("./routes/penjualan");
-const pembelianRoutes = require("./routes/pembelian");
+// const pembelianRoutes = require("./routes/pembelian");
 const laporanpenjualanRoutes = require("./routes/laporanpenjualan");
 
 const app = express();
