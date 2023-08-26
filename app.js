@@ -7,6 +7,7 @@ const pembelianRoutes = require("./routes/Pembelian");
 
 // const pembelianRoutes = require("./routes/pembelian");
 const laporanpenjualanRoutes = require("./routes/laporanpenjualan");
+const laporanpembelianRoutes = require("./routes/laporanpembelian");
 
 const app = express();
 // const hostname = "bv4yes5gbuhpqn8gsc3z-mysql.services.clever-cloud.com";
