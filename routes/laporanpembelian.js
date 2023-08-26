@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const con = require("../connection");
-const { route } = require("./Pembelian");
 
 router.get("/", (req, res) => {
   const mulai = req.query.mulai;
