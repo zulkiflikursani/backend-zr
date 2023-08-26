@@ -8,13 +8,12 @@ router.get("/", (req, res, next) => {
       if (err) throw err;
       res.status(200).json(result);
       console.log(result);
-      con.release();
+      
     });
   } catch (error) {
-    // response(500, ");
+    
     res.status(500).json({ msg: error.message });
-    con.release();
-  }
+   
 });
 
 // get prduk by id
@@ -40,15 +39,15 @@ router.post("/", (req, res, next) => {
   // res.status(200).json({ data: sql });
   try {
     con.query(sql, function (err, result) {
-      // con.release();
+
       if (err) throw err;
       res.status(200).json({ data: result });
       console.log(result);
-      con.release();
+     
     });
   } catch (error) {
     res.status(200).json({ data: error });
-    con.release();
+    
   }
 });
 // update produk
@@ -70,7 +69,7 @@ router.delete("/:id", (req, res) => {
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.status(200).send(result);
-    // con.release();
+   
   });
 });
 
