@@ -8,10 +8,12 @@ router.get("/", (req, res, next) => {
       if (err) throw err;
       res.status(200).json(result);
       console.log(result);
+      con.release();
     });
   } catch (error) {
     // response(500, ");
     res.status(500).json({ msg: error.message });
+    con.release();
   }
 });
 
@@ -22,9 +24,11 @@ router.get("/:id", (req, res, next) => {
     con.query(`select * from product where id=${id}`, function (err, result) {
       if (err) throw err;
       res.status(200).json(result);
+      con.release();
     });
   } catch (error) {
     res.status(500).json({ msg: error.message });
+    con.release();
   }
 });
 
@@ -40,9 +44,11 @@ router.post("/", (req, res, next) => {
       if (err) throw err;
       res.status(200).json({ data: result });
       console.log(result);
+      con.release();
     });
   } catch (error) {
     res.status(200).json({ data: error });
+    con.release();
   }
 });
 // update produk
@@ -64,6 +70,8 @@ router.delete("/:id", (req, res) => {
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.status(200).send(result);
+    con.release();
+
     // con.release();
   });
 });
