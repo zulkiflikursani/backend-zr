@@ -9,12 +9,10 @@ router.get("/", (req, res) => {
       function (err, result) {
         if (err) throw err;
         res.status(200).json(result);
-        con.release();
       }
     );
   } catch (error) {
     res.status(500).json({ msg: error.message });
-    con.release();
   }
 });
 

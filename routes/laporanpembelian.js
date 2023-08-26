@@ -9,7 +9,6 @@ router.get("/", (req, res) => {
   con.query(sql, function (err, result) {
     if (err) throw err;
     res.status(200).json(result);
-    con.release();
   });
   // res.status(200).json(sql);
 });
