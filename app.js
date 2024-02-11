@@ -39,10 +39,9 @@ app.use((error, req, res, next) => {
 //   next();
 // });
 const corsoption = {
-  origin: "*",
+  origin: "https://frontend-zr.vercel.app",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   preflightContinue: false,
-  optionsSuccessStatus: 204,
   credentials: true,
 };
 
