@@ -1,14 +1,21 @@
-const http = require("http");
+import con from "./config/connection.js";
+import app from "./app.js";
+import express from "express";
+import dotenv from "dotenv";
+dotenv.config();
+const port = 5000;
+const apps = express();
 
-const port = process.env.PORT || 5000;
-const hostname = process.env.HOSTNAME || "localhost";
-const app = require("./app");
+try {
+  await con.authenticate();
+  console.log("Database Connect");
+  // await Users.sync();
+} catch (error) {
+  console.log(error);
+}
 
-const server = http.createServer(app);
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+apps.use(express.json());
+apps.use(app);
+apps.listen(port, () => {
+  console.log(`Server running at port ${port}`);
 });
-// console(server);
-
-//s

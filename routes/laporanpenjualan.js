@@ -1,6 +1,6 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const con = require("../connection");
+import con from "../config/connection.js";
 
 router.get("/", (req, res) => {
   const mulai = req.query.mulai;
@@ -14,10 +14,9 @@ router.get("/", (req, res) => {
           product.hbeli,
           penjualan.id from penjualan LEFT JOIN product on penjualan.kode_barang = product.id where  CAST(penjualan.createAt as date) BETWEEN '${mulai}' and '${sampai}'`;
   // res.send(sql);
-  con.query(sql, function (err, result) {
-    if (err) throw err;
+  con.query(sql).then((result) => {
     res.status(200).json(result);
   });
 });
 
-module.exports = router;
+export default router;
