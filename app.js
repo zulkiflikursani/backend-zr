@@ -38,7 +38,15 @@ app.use((error, req, res, next) => {
 //   }
 //   next();
 // });
-app.use(cors({ credentials: true, origin: "https://frontend-zr.vercel.app" }));
+const corsoption = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  credentials: true,
+};
+
+app.use(cors(corsoption));
 app.use(cookieParser());
 app.use(express.json());
 app.use("/token", token);
