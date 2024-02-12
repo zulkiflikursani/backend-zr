@@ -16,23 +16,23 @@ app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
 
-  res.header(
-    "Access-Control-Allow-Headers",
+//   res.header(
+//     "Access-Control-Allow-Headers",
 
-    "Origin, X-Requseted-With, Content-Type, Accept, Authorization"
-  );
+//     "Origin, X-Requseted-With, Content-Type, Accept, Authorization"
+//   );
 
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "PUT, POST, GET, PATCH, DELETE");
+//   if (req.method === "OPTIONS") {
+//     res.header("Access-Control-Allow-Methods", "PUT, POST, GET, PATCH, DELETE");
 
-    return res.status(200).json({});
-  }
+//     return res.status(200).json({});
+//   }
 
-  next();
-});
+//   next();
+// });
 
 app.use(cookieParser());
 app.use(express.json());

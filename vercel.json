@@ -3,15 +3,16 @@
 
   "name": "backend-node",
 
-  "builds": [{ "src": "server.js", "use": "@vercel/node" }],
-
+  "builds": [
+    {
+      "src": "./index.js",
+      "use": "@vercel/node"
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",
-
-      "dest": "/server.js",
-
-      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+      "dest": "/"
     }
   ]
 }
