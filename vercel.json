@@ -11,20 +11,14 @@
   ],
   "routes": [
     {
-      "src": "./(.*)",
-      "dest": "./"
-    },
-    {
-      "src": "./routes/(.*)",
-      "dest": "./routes/$1"
+      "src": "/routes/(.*)",
+
+      "dest": "/$1/$2"
     },
     {
       "src": "/(.*)",
-      "dest": "/"
-    },
-    {
-      "src": "/routes/(.*)",
-      "dest": "/routes/"
+
+      "dest": "/api/index.php"
     }
   ]
 }
