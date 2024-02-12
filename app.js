@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import users from "./routes/users.js";
 // import users2 from "/routes/users.js";
 import product from "./routes/product.js";
-import pembelian from "./routes/pembelian.js";
+// import pembelian from "./routes/pembelian.js";
 import penjualan from "./routes/penjualan.js";
 import laporanPenjualan from "./routes/laporanpenjualan.js";
 import cookieParser from "cookie-parser";
@@ -16,47 +16,39 @@ app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
+app.use((req, res, next) => {
+  const origin = req.get("referer");
+  const isWhitelisted = whitelist.find((w) => origin && origin.includes(w));
+  if (isWhitelisted) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+    );
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "X-Requested-With,Content-Type,Authorization"
+    );
+    res.setHeader("Access-Control-Allow-Credentials", true);
+  }
+  // Pass to next layer of middleware
+  if (req.method === "OPTIONS") res.sendStatus(200);
+  else next();
+});
 
-//   res.header(
-//     "Access-Control-Allow-Headers",
-
-//     "Origin, X-Requseted-With, Content-Type, Accept, Authorization"
-//   );
-
-//   if (req.method === "OPTIONS") {
-//     res.header("Access-Control-Allow-Methods", "PUT, POST, GET, PATCH, DELETE");
-
-//     return res.status(200).json({});
-//   }
-
-//   next();
-// });
+const setContext = (req, res, next) => {
+  if (!req.context) req.context = {};
+  next();
+};
+app.use(setContext);
 
 app.use(cookieParser());
 app.use(express.json());
 app.use("/token", token);
 app.use("/users", users);
 app.use("/products", product);
-app.use("/pembelian", pembelian);
+// app.use("/pembelian", pembelian);
 app.use("/penjualan", penjualan);
 app.use("/laporanpenjualan", laporanPenjualan);
-
-app.use((req, res, next) => {
-  const error = new Error("not found");
-
-  error.status = 404;
-
-  next(error);
-});
-
-app.use((error, req, res, next) => {
-  res.status(error.status || 500);
-
-  res.json({
-    message: "error:" + error.message,
-  });
-});
 
 export default app;
