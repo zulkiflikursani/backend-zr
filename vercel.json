@@ -14,8 +14,8 @@
       "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
     },
     {
-      "src": "/routes/(.*)",
-      "dest": "/routes/$1"
+      "src": "./routes/(.*)",
+      "dest": "./routes/$1"
     }
   ]
 }
