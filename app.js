@@ -9,7 +9,6 @@ import penjualan from "./routes/penjualan.js";
 import laporanPenjualan from "./routes/laporanpenjualan.js";
 import cookieParser from "cookie-parser";
 import token from "./routes/token.js";
-import cors from "cors";
 const app = express.Router();
 
 app.use(morgan("dev"));
