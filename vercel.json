@@ -5,10 +5,13 @@
 
   "builds": [{ "src": "server.js", "use": "@vercel/node" }],
 
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/server.js"
+      "src": "/(.*)",
+
+      "dest": "/server.js",
+
+      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
     }
   ]
 }
