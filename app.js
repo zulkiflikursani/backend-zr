@@ -39,13 +39,13 @@ app.use((req, res, next) => {
   }
   next();
 });
-const corsoption = {
-  origin: ["https://frontend-zr.vercel.app", "http://localhost:3000"],
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true,
-};
+// const corsoption = {
+//   origin: ["https://frontend-zr.vercel.app", "http://localhost:3000"],
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   credentials: true,
+// };
 
-app.use(cors(corsoption));
+// app.use(cors(corsoption));
 app.use(cookieParser());
 app.use(express.json());
 app.use("/token", token);
