@@ -26,12 +26,5 @@
       "src": "/controller/(.*)",
       "dest": "/controller/$1"
     }
-  ],
 
-  "redirects": [
-    {
-      "source": "/routes/(.*)",
-      "destination": "/routes/$1"
-    }
-  ]
 }
