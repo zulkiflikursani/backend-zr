@@ -37,6 +37,7 @@ const port = "3306";
 //   console.log("Connected!");
 // });
 
+//test
 const con = new Sequelize(database, user, password, {
   host: hostname,
   dialect: "mysql",
