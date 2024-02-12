@@ -3,22 +3,15 @@
 
   "name": "backend-node",
 
-  "builds": [
-    {
-      "src": "api/index.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/routes/(.*)",
+  "builds": [{ "src": "server.js", "use": "@vercel/node" }],
 
-      "dest": "/$1/$2"
-    },
+  "routes": [
     {
       "src": "/(.*)",
 
-      "dest": "/api/index.php"
+      "dest": "/server.js",
+
+      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
     }
   ]
 }
