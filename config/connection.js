@@ -10,5 +10,5 @@ const con = new Sequelize(database, user, password, {
   host: hostname,
   dialect: "mysql",
 });
-// module.exports  = con;
+
 export default con;
