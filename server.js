@@ -40,6 +40,12 @@ app.get("/api", (req, res) => {
   res.end(`Hello! Go to item: tes`);
 });
 
+app.get("/apiss", (req, res) => {
+  res.setHeader("Content-Type", "text/html");
+  res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
+  res.end(`Hello! Go to item: tes`);
+});
+
 try {
   await con.authenticate();
   console.log("Database Connect");
