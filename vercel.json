@@ -10,6 +10,11 @@
       "source": "/(.*)",
 
       "destination": "/server.js"
+    },
+    {
+      "source": "/**/(.*)",
+
+      "destination": "/$1/$2"
     }
   ]
 }
