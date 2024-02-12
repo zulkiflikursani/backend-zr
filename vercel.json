@@ -3,13 +3,13 @@
 
   "name": "backend-node",
 
-  "builds": [{ "src": "./server.js", "use": "@vercel/node" }],
+  "builds": [{ "src": "server.js", "use": "@vercel/node" }],
 
   "rewrites": [
     {
       "source": "/(.*)",
 
-      "destination": "/"
+      "destination": "/server.js"
     }
   ]
 }
