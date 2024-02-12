@@ -16,7 +16,15 @@
     },
     {
       "src": "./routes/(.*)",
-      "dest": "./routes/"
+      "dest": "./routes/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    },
+    {
+      "src": "/routes/(.*)",
+      "dest": "/routes/"
     }
   ]
 }
