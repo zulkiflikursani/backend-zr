@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import users from "./routes/users.js";
 // import users2 from "/routes/users.js";
 import product from "./routes/product.js";
-// import pembelian from "./routes/pembelian.js";
+import pembelian from "./routes/pembelian.js";
 import penjualan from "./routes/penjualan.js";
 import laporanPenjualan from "./routes/laporanpenjualan.js";
 import cookieParser from "cookie-parser";
@@ -46,7 +46,7 @@ app.use(express.json());
 app.use("/token", token);
 app.use("/users", users);
 app.use("/products", product);
-// app.use("/pembelian", pembelian);
+app.use("/pembelian", pembelian);
 app.use("/penjualan", penjualan);
 app.use("/laporanpenjualan", laporanPenjualan);
 
