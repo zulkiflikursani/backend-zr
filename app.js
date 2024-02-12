@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import users from "./routes/users.js";
+// import users2 from "/routes/users.js";
 import product from "./routes/product.js";
 import pembelian from "./routes/pembelian.js";
 import penjualan from "./routes/penjualan.js";
