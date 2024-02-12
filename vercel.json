@@ -14,12 +14,12 @@
       "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
     },
     {
-      "src": "/routes/pembelian.js",
+      "src": "",
       "dest": "/routes/pembelian.js"
     },
     {
       "srt": "/api/(.*)",
-      "des": "/api/$1"
+      "dest": "/api/$1"
     }
   ],
 
