@@ -9,7 +9,7 @@
       "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
     },
     {
-      "src": "/routes/(.*)",
+      "src": "/var/task/routes/(.*)",
       "dest": "/routes/$1"
     }
   ]
