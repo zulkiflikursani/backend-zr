@@ -9,8 +9,8 @@
       "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
     },
     {
-      "src": "/(*)/(.*)",
-      "dest": "/$1/$2"
+      "src": "/routes/(.*)",
+      "dest": "/routes/$1"
     }
   ]
 }
